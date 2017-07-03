@@ -60,7 +60,7 @@ public class DucksCasino {
         }
     }
 
-    public int readChoise() {
+    private int readChoise() {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Select a duck number from 1 to 5 : ");
@@ -77,7 +77,7 @@ public class DucksCasino {
         return 0;
     }
 
-    public void maxSpeedDuck(){
+    private void maxSpeedDuck(){
         ArrayList<Duck> winDuck = new ArrayList<>();
         ArrayList<Duck> myDuck = new ArrayList<>();
         int duckNumber = readChoise();
@@ -102,7 +102,7 @@ public class DucksCasino {
        else {
            System.out.println("You almost won, but the other duck was faster, try again");
            myCash -=RATE;
-           System.out.println("Balance:"+ myCash);
+           System.out.println("Balance :"+ myCash);
        }
     }
 }
