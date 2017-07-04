@@ -8,8 +8,6 @@ public  abstract class Duck {
 
     public abstract void display();
 
-    public  abstract String getName();
-
     public void performFly() {
         flyBehavior.fly();
     }
@@ -25,7 +23,11 @@ public  abstract class Duck {
     public void setQuackBehavior(QuackBehavior qb) {
         quackBehavior = qb;
     }
+
     public abstract int getWay();
+
+    public abstract void  printSpeed();
+
     public  int resultSpeed;
 }
 

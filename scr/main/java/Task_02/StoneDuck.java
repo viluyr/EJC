@@ -21,20 +21,14 @@ public class StoneDuck extends Duck {
         System.out.println("I'm rubber duck, i can't fly");
     }
 
-    @Override
-    public String getName() {
-        return "Stone Duck";
+    public  void printSpeed() {
+        System.out.println("Stone Duck Speed: =" + resultSpeed);
     }
 
-    public  int  setSpeed() {
-        int stoneDuckSpeed= 0;
-        return  stoneDuckSpeed ;
-    }
     @Override
     public int getWay() {
-        int  DuckWay = 0;
-        System.out.println("Stone Duck Speed:"+ DuckWay);
-        resultSpeed = DuckWay;
+        int  duckWay = 0;
+        resultSpeed = duckWay;
         return resultSpeed;
     }
 }

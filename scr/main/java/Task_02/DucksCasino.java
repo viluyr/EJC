@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class DucksCasino {
+
     private static final short RATE = 100;
     private static final short DUCKS_COUNT = 5;
     private static int myCash = 500;
@@ -21,16 +22,19 @@ public class DucksCasino {
     public static void main(String[] args) {
         DucksCasino racecasino = new DucksCasino();
 
+        System.out.println("Hello ans Welcome. This is a duck casino in which betting on a duck.");
+
         while (myCash != 0 ){
-
             racecasino.createDucksList();
-            //racecasino.readChoise();
             racecasino.maxSpeedDuck();
-
            }
-        System.out.println("Game over");
+        System.out.println("Sorry, u don't have enough money in your account Game over");
     }
 
+    /**
+     * createDucksList()
+     * Create ArrayList of Ducks
+     */
     private  void createDucksList() {
         Random rand = new Random();
         for (int i = 0; i < DUCKS_COUNT; i++) {
@@ -38,45 +42,47 @@ public class DucksCasino {
                 switch (duckNumber) {
                     case 1:
                         ducksList.add(mallard = new MallardDuck());
-                        System.out.println(mallard.getName());
                         break;
                     case 2:
                         ducksList.add(stone = new StoneDuck());
-                        System.out.println(stone.getName());
                         break;
                     case 3:
                         ducksList.add(whistling = new WhistlingDuck());
-                        System.out.println(whistling.getName());
                         break;
                     case 4:
                         ducksList.add(bullet = new BulletDuck());
-                        System.out.println(bullet.getName());
                         break;
                     case 5:
                         ducksList.add(cuba = new CubaDuck());
-                        System.out.println(cuba.getName());
                         break;
                 }
         }
     }
 
+    /**
+     * readChoise()
+     * Reads keyboard input
+     */
     private int readChoise() {
+        int duckNumber;
+        try{ BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            do {
+                System.out.println("\n Select a duck number from 1 to 5 : ");
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("Select a duck number from 1 to 5 : ");
-            int duckNumber;
-            duckNumber = Integer.parseInt(reader.readLine());
-            if ((duckNumber > DUCKS_COUNT )|| (duckNumber < 0)) {
-                System.out.println("Error you entered the wrong number, please try again!");
                 duckNumber = Integer.parseInt(reader.readLine());
-            }
+            } while ((duckNumber > DUCKS_COUNT )|| (duckNumber < 0));
             return duckNumber;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return 0;
+        throw new RuntimeException();
     }
 
+    /**
+     * maxSpeedDuck()
+     * It considers the maximum speed and displays the path that the fastest duck ran,
+     * also operations with balance
+     */
     private void maxSpeedDuck(){
         ArrayList<Duck> winDuck = new ArrayList<>();
         ArrayList<Duck> myDuck = new ArrayList<>();
@@ -84,6 +90,7 @@ public class DucksCasino {
         int max = 0;
         for (int i = 0; i < ducksList.size(); i++)
         {
+            ducksList.get(i).printSpeed();
             if (ducksList.get(i).resultSpeed >= max){
                 max = ducksList.get(i).resultSpeed;
                 winDuck.add(ducksList.get(i));
@@ -92,18 +99,19 @@ public class DucksCasino {
                 myDuck.add(ducksList.get(i));
             }
         }
-        System.out.println("Max speed was : "+ max);
+        System.out.println("\n Max speed was : "+ max );
 
        if (myDuck.equals(winDuck)){
-           System.out.println("Your Duck Won");
+           System.out.println("Your Duck Won, Try again\n");
            myCash +=RATE;
            System.out.println("Balance:"+ myCash);
        }
        else {
-           System.out.println("You almost won, but the other duck was faster, try again");
+           System.out.println("You almost won, but the other duck was faster, try again \n");
            myCash -=RATE;
            System.out.println("Balance :"+ myCash);
        }
+        ducksList.clear();
     }
 }
 
