@@ -103,7 +103,7 @@ public class DucksCasino {
 
        if (myDuck.equals(winDuck)){
            System.out.println("Your Duck Won, Try again\n");
-           myCash +=RATE;
+           myCash +=2*RATE;
            System.out.println("Balance:"+ myCash);
        }
        else {
